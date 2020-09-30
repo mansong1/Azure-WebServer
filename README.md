@@ -13,7 +13,7 @@ Before we begin ensure the following is complete:
 3. Install [Packer](https://www.packer.io/downloads)
 4. Install [Terraform](https://www.terraform.io/downloads.html)
 
-### Instructions
+### Instructions
 
 * vars.tf: This file holds the values of the variables used in the template.
 * output.tf: This file describes the settings that display after deployment.
