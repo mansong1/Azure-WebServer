@@ -26,3 +26,7 @@ variable "admin_password" {
     description = "Default password for admin"
     default = "Passwwoord11223344"
 }
+
+output "jumpbox_public_ip" {
+    value = azurerm_public_ip.jumpbox.fqdn
+}
