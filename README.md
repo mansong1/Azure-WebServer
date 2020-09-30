@@ -2,7 +2,7 @@
 
 ### Introduction
 
-This is a project from Udacity Azure DevOps Nanodegree - Deploying a Web Server in Azure. For this project, we will write a Packer template and a Terraform template to deploy a customisable, scalable web server in Azure.
+This is a project from Udacity Azure DevOps Nanodegree - Deploying a Web Server in Azure. For this project, we will write a Packer template and a Terraform template to deploy a customisable, scalable web server and jumpbox in Azure.
 
 ### Prerequisites
 
@@ -32,3 +32,20 @@ az group create -n udacityImageGroup -l southuk
 
 * The default value of the **resource_group_name** variable is unset. Define your own value.
 * The default value of the **instance_count** variable is 1. This defines the number of VMs to deploy.
+
+
+### Deploy the infrastructure
+
+1. Initialise the Terraform environment by running the following command in the directory where you cloned this repo.
+
+`terraform plan`
+
+The provider plug-ins download from the Terraform registry into the **.terraform** folder in the directory where we ran the command.
+
+2. Run the following command to deploy the infrastructure to Azure.
+
+`terraform apply`
+
+### Clean up the environment
+
+`terraform destroy`
