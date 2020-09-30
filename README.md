@@ -15,3 +15,7 @@ Before we begin ensure the following is complete:
 
 
 ### Instructions
+
+* vars.tf: This file holds the values of the variables used in the template.
+* output.tf: This file describes the settings that display after deployment.
+* main.tf: This file contains the code of the infrastructure we will be deploying.
