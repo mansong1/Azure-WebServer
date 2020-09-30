@@ -16,3 +16,13 @@ variable "instance_count" {
     default     = 1
     type        = number
 }
+
+variable "application_port" {
+    description = "The port that we want to expose to the external load balancer"
+    default     = 80
+}
+
+variable "admin_password" {
+    description = "Default password for admin"
+    default = "Passwwoord11223344"
+}
