@@ -15,9 +15,18 @@ Before we begin ensure the following is complete:
 
 ### Instructions
 
-* vars.tf: This file holds the values of the variables used in the template.
-* output.tf: This file describes the settings that display after deployment.
-* main.tf: This file contains the code of the infrastructure we will be deploying.
+* **vars.tf**: This file holds the values of the variables used in the template.
+* **output.tf**: This file describes the settings that display after deployment.
+* **main.tf**: This file contains the code of the infrastructure we will be deploying.
+* **provider.tf**: This file contains the code for the terraform provider plugin.
+* **webserver.json**: This file contains the packer template for building our webserver image.
+
+
+### Build Packer image
+
+az group create -n udacityImageGroup -l southuk
+
+`./packer build webserver.json`
 
 ### Notes
 
