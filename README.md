@@ -31,4 +31,4 @@ az group create -n udacityImageGroup -l southuk
 ### Notes
 
 * The default value of the **resource_group_name** variable is unset. Define your own value.
-* The default value of the **instance_count** variable is 1. This defines the number of VMs to deploy
+* The default value of the **instance_count** variable is 1. This defines the number of VMs to deploy.
