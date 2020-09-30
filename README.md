@@ -4,7 +4,7 @@
 
 This is a project from Udacity Azure DevOps Nanodegree - Deploying a Web Server in Azure. For this project, we will write a Packer template and a Terraform template to deploy a customisable, scalable web server in Azure.
 
-### Dependencies
+### Prerequisites
 
 Before we begin ensure the following is complete:
 
