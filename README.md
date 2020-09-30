@@ -19,3 +19,8 @@ Before we begin ensure the following is complete:
 * vars.tf: This file holds the values of the variables used in the template.
 * output.tf: This file describes the settings that display after deployment.
 * main.tf: This file contains the code of the infrastructure we will be deploying.
+
+### N.B. 
+
+* The default value of the **resource_group_name** variable is unset. Define your own value.
+* The default value of the **instance_count** variable is 1. This defines the number of VMs to deploy
