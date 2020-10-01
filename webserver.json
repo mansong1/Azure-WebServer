@@ -11,20 +11,16 @@
       "client_secret": "{{user `client_secret`}}",
       "tenant_id": "{{user `tenant_id`}}",
       "subscription_id": "{{user `subscription_id`}}",
-  
       "managed_image_resource_group_name": "udacityImageGroup",
       "managed_image_name": "udacityPackerImage",
-  
       "os_type": "Linux",
       "image_publisher": "Canonical",
       "image_offer": "UbuntuServer",
       "image_sku": "18.04-LTS",
-  
       "azure_tags": {
           "type": "webserver",
           "environment": "udacity"
       },
-  
       "location": "UK South",
       "vm_size": "Standard_D2s_v3"
     }],
@@ -38,5 +34,3 @@
       "type": "shell"
     }]
 }
-
-
