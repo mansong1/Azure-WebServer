@@ -21,11 +21,11 @@ Before we begin ensure the following is complete:
 * **provider.tf**: This file contains the code for the terraform provider plugin.
 * **webserver.json**: This file contains the packer template for building our webserver image.
 
-
 ### Build Packer image
 
 1. Create a resource group with az group create: `az group create -n udacityImageGroup -l uksouth`
 
+```
 {
   "id": "/subscriptions/b8acf670-45b1-4124-b6ce-a294c1583634/resourceGroups/udacityImageGroup",
   "location": "uksouth",
@@ -37,36 +37,44 @@ Before we begin ensure the following is complete:
   "tags": null,
   "type": "Microsoft.Resources/resourceGroups"
 }
-
+```
 
 2. Create a service principal with az ad sp create-for-rbac and output the credentials that Packer needs:
 
+```
 az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"
 az account show --query "{ subscription_id: id }"
+```
 
+```
 export ARM_SUBSCRIPTION_ID=your_subscription_id
 export ARM_CLIENT_ID=your_appId
 export ARM_CLIENT_SECRET=your_password
 export ARM_TENANT_ID=your_tenant_id
+```
 
 3. Build Image
+
 `packer build webserver.json`
-
-### Notes
-
-* The default value of the **resource_group_name** variable is unset. Define your own value.
-* The default value of the **instance_count** variable is 1. This defines the number of VMs to deploy.
-
 
 ### Deploy the infrastructure
 
 1. Initialise the Terraform environment by running the following command in the directory where you cloned this repo.
 
-`terraform plan -out -var="resource_group_name=udacity"` - See solution.plan for what this outputs
+`terrafrom init`
 
 The provider plug-ins download from the Terraform registry into the **.terraform** folder in the directory where we ran the command.
 
 2. Run the following command to deploy the infrastructure to Azure.
+
+#### N.B.
+
+* The default value of the **resource_group_name** variable is unset. Define your own value.
+* The default value of the **instance_count** variable is 1. This defines the number of VMs to deploy.
+
+Either update the vars.tf or pass a var as below:
+
+`terraform plan -out -var="resource_group_name=udacity"` - See solution.plan for what this outputs
 
 `terraform apply solution.plan`
 
@@ -74,18 +82,23 @@ The provider plug-ins download from the Terraform registry into the **.terraform
 
 `terraform destroy`
 
-
 ### Optional - Deploy a policy
 
 We can create a policy that ensures all indexed resources are tagged. This will help us with organization and tracking, and make it easier to log when things go wrong.
 
-`az policy definition create --name 'tagging-policy' --display-name 'Add a tag to resources' --description 'Prevents the creation of any resource missing a tag.' --rules 'tagpolicy.rules.json' --mode Indexed`
+```
+az policy definition create --name 'tagging-policy' --display-name 'Add a tag to resources' --description 'Prevents the creation of any resource missing a tag.' --rules 'tagpolicy.rules.json' --mode Indexed
+```
 
-`az policy assignment create --name "tagging-policy" --scope "/subscriptions/<ACCOUNTID>" --policy "tagging-policy"`
+```
+az policy assignment create --name "tagging-policy" --scope "/subscriptions/<ACCOUNTID>" --policy "tagging-policy"
+```
 
 The ACCOUNTID can be found by running the below command: 
 
-`az account show --query "{ subscription_id: id }"`
+```
+az account show --query "{ subscription_id: id }"
+```
 
 az account list and looking up id in the fields.
 
