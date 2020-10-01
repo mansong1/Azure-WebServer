@@ -24,9 +24,33 @@ Before we begin ensure the following is complete:
 
 ### Build Packer image
 
-az group create -n udacityImageGroup -l southuk
+1. Create a resource group with az group create: `az group create -n udacityImageGroup -l uksouth`
 
-`./packer build webserver.json`
+{
+  "id": "/subscriptions/b8acf670-45b1-4124-b6ce-a294c1583634/resourceGroups/udacityImageGroup",
+  "location": "uksouth",
+  "managedBy": null,
+  "name": "udacityImageGroup",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+
+
+2. Create a service principal with az ad sp create-for-rbac and output the credentials that Packer needs:
+
+az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"
+az account show --query "{ subscription_id: id }"
+
+export ARM_SUBSCRIPTION_ID=your_subscription_id
+export ARM_CLIENT_ID=your_appId
+export ARM_CLIENT_SECRET=your_password
+export ARM_TENANT_ID=your_tenant_id
+
+3. Build Image
+`packer build webserver.json`
 
 ### Notes
 
@@ -59,7 +83,9 @@ We can create a policy that ensures all indexed resources are tagged. This will 
 
 `az policy assignment create --name "tagging-policy" --scope "/subscriptions/<ACCOUNTID>" --policy "tagging-policy"`
 
-The ACCOUNTID can be found by running the below command:
+The ACCOUNTID can be found by running the below command: 
+
+`az account show --query "{ subscription_id: id }"`
 
 az account list and looking up id in the fields.
 
