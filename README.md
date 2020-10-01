@@ -49,3 +49,18 @@ The provider plug-ins download from the Terraform registry into the **.terraform
 ### Clean up the environment
 
 `terraform destroy`
+
+
+### Optional - Deploy a policy
+
+We can create a policy that ensures all indexed resources are tagged. This will help us with organization and tracking, and make it easier to log when things go wrong.
+
+`az policy definition create --name 'tagging-policy' --display-name 'Add a tag to resources' --description 'Prevents the creation of any resource missing a tag.' --rules 'tagpolicy.rules.json' --mode Indexed`
+
+`az policy assignment create --name "tagging-policy" --scope "/subscriptions/<ACCOUNTID>" --policy "tagging-policy"`
+
+The ACCOUNTID can be found by running the below command:
+
+az account list and looking up id in the fields.
+
+Check the policy by running `az policy assignment list`
