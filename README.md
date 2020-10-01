@@ -25,7 +25,11 @@ Before we begin ensure the following is complete:
 
 1. Create a resource group with az group create: `az group create -n udacityImageGroup -l uksouth`
 
+<<<<<<< HEAD
 ```
+=======
+`
+>>>>>>> fa24557ac2e30223315734eb38286f4842056c50
 {
   "id": "/subscriptions/b8acf670-45b1-4124-b6ce-a294c1583634/resourceGroups/udacityImageGroup",
   "location": "uksouth",
@@ -37,6 +41,7 @@ Before we begin ensure the following is complete:
   "tags": null,
   "type": "Microsoft.Resources/resourceGroups"
 }
+<<<<<<< HEAD
 ```
 
 2. Create a service principal with az ad sp create-for-rbac and output the credentials that Packer needs:
@@ -47,12 +52,26 @@ az account show --query "{ subscription_id: id }"
 ```
 
 ```
+=======
+`
+
+2. Create a service principal with az ad sp create-for-rbac and output the credentials that Packer needs:
+`
+az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"
+az account show --query "{ subscription_id: id }"
+`
+`
+>>>>>>> fa24557ac2e30223315734eb38286f4842056c50
 export ARM_SUBSCRIPTION_ID=your_subscription_id
 export ARM_CLIENT_ID=your_appId
 export ARM_CLIENT_SECRET=your_password
 export ARM_TENANT_ID=your_tenant_id
+<<<<<<< HEAD
 ```
 
+=======
+`
+>>>>>>> fa24557ac2e30223315734eb38286f4842056c50
 3. Build Image
 
 `packer build webserver.json`
