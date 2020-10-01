@@ -103,7 +103,7 @@ resource "azurerm_virtual_machine_scale_set" "main" {
     }
 
     storage_profile_os_disk {
-        name              = "${data.azurerm_image.image.name}-osstorage"
+        name              = ""
         caching           = "ReadWrite"
         create_option     = "FromImage"
         managed_disk_type = "Standard_LRS"
@@ -126,7 +126,7 @@ resource "azurerm_virtual_machine_scale_set" "main" {
         disable_password_authentication = true
 
         ssh_keys {
-            path     = "/home/azureuser/.ssh/authorized_keys"
+            path     = "/home/udacityuser/.ssh/authorized_keys"
             key_data = file("~/.ssh/id_rsa.pub")
         }
     }
@@ -208,7 +208,7 @@ resource "azurerm_virtual_machine" "jumpbox" {
         disable_password_authentication = true
 
         ssh_keys {
-        path     = "/home/azureuser/.ssh/authorized_keys"
+        path     = "/home/udacityuser/.ssh/authorized_keys"
         key_data = file("~/.ssh/id_rsa.pub")
         }
     }

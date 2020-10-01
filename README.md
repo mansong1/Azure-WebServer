@@ -62,13 +62,13 @@ export ARM_TENANT_ID=your_tenant_id
 
 1. Initialise the Terraform environment by running the following command in the directory where you cloned this repo.
 
-`terraform plan`
+`terraform plan -out -var="resource_group_name=udacity"` - See solution.plan for what this outputs
 
 The provider plug-ins download from the Terraform registry into the **.terraform** folder in the directory where we ran the command.
 
 2. Run the following command to deploy the infrastructure to Azure.
 
-`terraform apply`
+`terraform apply solution.plan`
 
 ### Clean up the environment
 
