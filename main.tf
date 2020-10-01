@@ -22,7 +22,7 @@ resource "azurerm_subnet" "main" {
     name                 = "${var.resource_group_name}-subnet"
     resource_group_name  = azurerm_resource_group.main.name
     virtual_network_name = azurerm_virtual_network.main.name
-    address_prefix       = "10.0.2.0/24"
+    address_prefixes     = ["10.0.2.0/24"]
 }
 
 resource "azurerm_public_ip" "main" {
@@ -180,7 +180,7 @@ resource "azurerm_network_interface" "jumpbox" {
 resource "azurerm_virtual_machine" "jumpbox" {
     name                  = "jumpbox"
     location              = var.location
-    resource_group_name   = azurerm_resource_group.vmss.name
+    resource_group_name   = azurerm_resource_group.main.name
     network_interface_ids = [azurerm_network_interface.jumpbox.id]
     vm_size               = "Standard_DS1_v2"
 

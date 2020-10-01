@@ -1,5 +1,5 @@
 output "instance_public_ip" {
-    value = azurerm_public_ip.instance.fqdn
+    value = azurerm_public_ip.main.fqdn
 }
 
 output "jumpbox_public_ip" {
