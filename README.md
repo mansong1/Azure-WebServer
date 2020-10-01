@@ -57,7 +57,7 @@ export ARM_TENANT_ID=your_tenant_id
 
 `packer build webserver.json`
 
-### Deploy the infrastructure
+### Deploy the infrastructure
 
 1. Initialise the Terraform environment by running the following command in the directory where you cloned this repo.
 
